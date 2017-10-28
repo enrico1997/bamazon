@@ -81,20 +81,10 @@ function purchaseProduct() {
 function afterConnection() {
 	connection.query("SELECT * FROM `products`", function(err, res) {
 		if (err) throw err;
-     	// console.log(item_id2Digit + " | " + res[i].product_name + " | " + res[i].department_name + " | $" + price2Dec);
-    	// console.log("\n\nID", "  PRODUCT", "  DEPARTMENT", "                PRICE");
-    	// console.log(res);
+
 	    for (var i = 0; i < res.length; i++) {
-   			var price2Dec = parseFloat(Math.round(res[i].price * 100) / 100).toFixed(2);
-	      	var item_id2Digit = ("0" + res[i].item_id).slice(-2);
-	      	var columns = res;
-	      	// console.log(item_id2Digit + " | " + res[i].product_name + " | " + res[i].department_name + " | $" + price2Dec);
-   	   		// console.log(columnify(res, {columns: ['ID', 'PRODUCT NAME', 'DEPARTMENT NAME', 'PRICE']}));
-    		// console.log(columnify(item_id2Digit, res[i].product_name, res[i].department_name, price2Dec, {columns: ['ITEM ID', 'PRODUCT NAME', 'DEPARTMENT NAME', 'PRICE']}));
-    		// console.log(columnify(res[i].item_id, res[i].product_name, res[i].department_name, price2Dec));
     	}
-     	console.log(columnify(columns, {columns: ['item_id', 'product_name', 'department_name', 'price'], columnSplitter: ' | '}));
-		
+     	console.log("\n", columnify(res, {columns: ['item_id', 'product_name', 'department_name', 'price'], }) + "\n");
 		purchaseProduct();
 	});
 }
