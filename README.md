@@ -24,7 +24,7 @@ Welcome to Bamazon, an Amazon-like storefront built with Node.js using MySQL to 
 
 4. Populate this database with around 10 different products. (i.e. Insert "mock" data rows into this database and table).
 
-![Bamazon Schema](https://github.com/enrico1997/bamazon/tree/master/gifs/schema.png) 
+![Bamazon Schema](gifs/schema.png) 
 
 5. Running the Node application `bamazonCustomer.js` will first display all of the items available for sale, including the ids, names, product category and prices of products for sale.
 
@@ -32,18 +32,18 @@ Welcome to Bamazon, an Amazon-like storefront built with Node.js using MySQL to 
    * The ID of the product they would like to buy.
    * How many units of the product they would like to buy.
 
-![Bamazon Prompts](https://github.com/enrico1997/bamazon/tree/master/gifs/01.jpg)
+![Bamazon Prompts](gifs/01.jpg)
 
 7. Once the customer places the order, the application will check if we have inventory. If not, the app will inform the customer that there is `Insufficient quantity!`, and will prevent the order from going through.
 
-![Bamazon Not Enough](https://github.com/enrico1997/bamazon/tree/master/gifs/02.not_enough.jpg)
+![Bamazon Not Enough](gifs/02.not_enough.jpg)
 
 8. But we try to keep our inventory high  in order to fulfill our customers' order. Processing the order means:
    * Updating the SQL database to reflect the remaining quantity.
    * Showing the customer the total cost of their purchase.
 
-![Bamazon Success](https://github.com/enrico1997/bamazon/tree/master/gifs/03_success.png)
-![Bamazon Success](https://github.com/enrico1997/bamazon/tree/master/gifs/04_reduced.jpg)
+![Bamazon Success1](gifs/03_success.png)
+![Bamazon Success2](gifs/04_reduced.jpg)
 
 - - -
 
