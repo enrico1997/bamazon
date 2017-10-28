@@ -52,7 +52,7 @@ function purchaseProduct() {
 
 				// If user requests more than the available stock
 			if (answer.quantity > stock) {
-				console.log("\n*************************************\nSorry, we ran out.\nPlease try again with fewer quantity.\n*************************************".red);
+				console.log("\n*********************************************************\nSorry, we do not have enough stock to fulfill your order.\nPlease try again in a few days...\n*********************************************************".red);
 				afterConnection();
 			}
 				// If there is enough product in stock
