@@ -22,11 +22,11 @@ Welcome to Bamazon, an Amazon-like storefront built with Node.js using MySQL to 
 
    * stock_quantity (how much of the product is available in stores)
 
-4. Populate this database with around 10 different products. (i.e. Insert "mock" data rows into this database and table).
-
 ![Bamazon Schema](gifs/schema.png) 
 
-5. Running the Node application `bamazonCustomer.js` will first display all of the items available for sale, including the ids, names, product category and prices of products for sale.
+4. Populate this database with around 10 different products. (i.e. Insert "mock" data rows into this database and table).
+
+5. Running the Node application `bamazonCustomer.js` will first display all of the items available for sale, including the IDs, names, product category and prices of products for sale.
 
 6. The app will then prompt our customers with two messages:
    * The ID of the product they would like to buy.
@@ -39,11 +39,11 @@ Welcome to Bamazon, an Amazon-like storefront built with Node.js using MySQL to 
 ![Bamazon Not Enough](gifs/02.not_enough.jpg)
 
 8. But we try to keep our inventory high  in order to fulfill our customers' order. Processing the order means:
-   * Updating the SQL database to reflect the remaining quantity.
    * Showing the customer the total cost of their purchase.
+   ![Bamazon Success1](gifs/03_success.png)
 
-![Bamazon Success1](gifs/03_success.png)
-![Bamazon Success2](gifs/04_reduced.jpg)
+   * Updating the SQL database to reflect the remaining quantity.
+   ![Bamazon Success2](gifs/04_reduced.jpg)
 
 - - -
 
