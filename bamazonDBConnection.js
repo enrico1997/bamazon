@@ -1,6 +1,7 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var columnify = require('columnify')
+var colors = require("colors");
 
 var connection = mysql.createConnection({
 	host: "localhost",
@@ -51,7 +52,8 @@ function purchaseProduct() {
 
 				// If user requests more than the available stock
 			if (answer.quantity > stock) {
-				console.log("\n*************************************\nSorry, we ran out.\nPlease try again with fewer quantity.\n*************************************");
+				console.log("\n*************************************\nSorry, we ran out.\nPlease try again with fewer quantity.\n*************************************".red);
+				afterConnection();
 			}
 				// If there is enough product in stock
 			else {
@@ -62,10 +64,11 @@ function purchaseProduct() {
 					else {
 						var total = product.price * answer.quantity;
 			   			var price2Dec = parseFloat(Math.round(total * 100) / 100).toFixed(2);
-						console.log("\n**********************************************************************");
-						console.log("Thank you for purchasing '" + product.product_name + "' (quantity: " + answer.quantity + ")");
-						console.log('Your purchase was successful and your total is $' + price2Dec);
-						console.log("**********************************************************************");
+						console.log("\n**********************************************************************".green);
+						console.log("Thank you for purchasing ".green + product.product_name + " (quantity: ".green + answer.quantity + ")".green);
+						console.log("Your purchase was successful and your total is ".green + "$" + price2Dec);
+						console.log("**********************************************************************".green);
+						exit();
 					}
 		 			 // re-prompt the user for if they want to buy something else
 		  			// start();
@@ -78,22 +81,25 @@ function purchaseProduct() {
 function afterConnection() {
 	connection.query("SELECT * FROM `products`", function(err, res) {
 		if (err) throw err;
-
-		var columns = "";
-		// if (err) { return console.err('err connecting: ' + err.stack); }
-      	// console.log(item_id2Digit + " | " + res[i].product_name + " | " + res[i].department_name + " | $" + price2Dec);
-    	console.log("\n\nID", "  PRODUCT", "  DEPARTMENT", "                PRICE");
-    	console.log("---------------------------------------------------");
-   		// console.log(columnify("",{columns: ['ID', 'PRODUCT NAME', 'DEPARTMENT NAME', 'PRICE']}));
+     	// console.log(item_id2Digit + " | " + res[i].product_name + " | " + res[i].department_name + " | $" + price2Dec);
+    	// console.log("\n\nID", "  PRODUCT", "  DEPARTMENT", "                PRICE");
+    	// console.log(res);
 	    for (var i = 0; i < res.length; i++) {
    			var price2Dec = parseFloat(Math.round(res[i].price * 100) / 100).toFixed(2);
 	      	var item_id2Digit = ("0" + res[i].item_id).slice(-2);
-	      	console.log(item_id2Digit + " | " + res[i].product_name + " | " + res[i].department_name + " | $" + price2Dec);
+	      	var columns = res;
+	      	// console.log(item_id2Digit + " | " + res[i].product_name + " | " + res[i].department_name + " | $" + price2Dec);
+   	   		// console.log(columnify(res, {columns: ['ID', 'PRODUCT NAME', 'DEPARTMENT NAME', 'PRICE']}));
     		// console.log(columnify(item_id2Digit, res[i].product_name, res[i].department_name, price2Dec, {columns: ['ITEM ID', 'PRODUCT NAME', 'DEPARTMENT NAME', 'PRICE']}));
     		// console.log(columnify(res[i].item_id, res[i].product_name, res[i].department_name, price2Dec));
     	}
-    	console.log("---------------------------------------------------\n\n");
+     	console.log(columnify(columns, {columns: ['item_id', 'product_name', 'department_name', 'price'], columnSplitter: ' | '}));
 		
 		purchaseProduct();
 	});
+}
+
+function exit() {
+	console.log ("\nCome back and visit us soon!".blue);
+	connection.end();
 }
